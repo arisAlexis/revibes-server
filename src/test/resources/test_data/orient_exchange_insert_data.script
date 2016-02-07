@@ -1,0 +1,78 @@
+DELETE FROM index:exchangeKV
+
+DELETE VERTEX User;
+DELETE VERTEX Activity;
+DELETE VERTEX Tag;
+DELETE VERTEX Stream;
+DELETE VERTEX Event;
+
+INSERT into User content  {"email": "testuser1@test.com","firstName": "tester","lastName": "testious","username":"testuser1","mainImage":"http://revib.es.s3.amazonaws.com/test/testuser1.jpg","password":{"hash":"f58a27fe472c6faf84eeb70ff74c3b5e6e9f17e0a758c00784bf20bd55eecc8d","salt":"[B@58c1670b" },"images":["http://revib.es.s3.amazonaws.com/test/testuser1.jpg"],"address":"whitehouse","lon":2.349897,"lat":44.842111,"vibes":5,"notifications":[{"id":"1234","type":"SEND_FRIEND_REQUEST"},{"id":"1235","type":"DELETE_FROM_EVENT"}],"preferences": {"language":"en","country":"US"},"registrationDate":16234} ;
+INSERT into User content {"email": "testuser2@test.com","username":"testuser2","password":{"hash":"f58a27fe472c6faf84eeb70ff74c3b5e6e9f17e0a758c00784bf20bd55eecc8d","salt":"[B@58c1670b" },"firstName": "test2","lastName": "last2","mainImage":"http://revib.es.s3.amazonaws.com/test/testuser2.jpg","lon":2.349897,"lat":34.842111,"vibes":4,"preferences": {"language":"en","country":"US"},"registrationDate":16212};
+INSERT into User content {"email": "testuser3@test.com","username":"testuser3","password":{"hash":"f58a27fe472c6faf84eeb70ff74c3b5e6e9f17e0a758c00784bf20bd55eecc8d","salt":"[B@58c1670b" },"firstName": "test3","lastName": "last3","mainImage":"http://revib.es.s3.amazonaws.com/test/testuser3.jpg","lon":2.349897,"lat":34.842111,"vibes":3,"preferences": {"language":"en","country":"US"},"registrationDate":16212};
+INSERT into User content  {"email": "testuser4@test.com","username":"testuser4","password":{"hash":"f58a27fe472c6faf84eeb70ff74c3b5e6e9f17e0a758c00784bf20bd55eecc8d","salt":"[B@58c1670b" },"firstName": "test4","lastName": "last4","preferences": {"language":"en","country":"US"},"mainImage":"http://revib.es.s3.amazonaws.com/test/testuser4.jpg","lon":2.349897,"lat":34.842111,"vibes":3,"registrationDate":16212};
+
+INSERT into Tag content {"tagName": "leakage"};
+INSERT into Tag content {"tagName": "water"};
+INSERT into Tag content {"tagName": "waterfour"};
+INSERT into Tag content {"tagName": "education"};
+INSERT into Tag content {"tagName": "babysitting"};
+INSERT into Tag content {"tagName": "tailoring"};
+INSERT into Tag content {"tagName": "wedding"};
+INSERT into Tag content {"tagName": "cooking"};
+INSERT into Tag content {"tagName": "pasta"};
+INSERT into Tag content {"tagName": "bicycle"};
+INSERT into Tag content {"tagName": "fixie"};
+INSERT into Tag content {"tagName": "programming"};
+INSERT into Tag content {"tagName": "HTML5"};
+
+INSERT into Activity content {"isNew":false,"postDate":1418725300001,"type":"OFFER","title":"Plumbing work","description":"I need someone to fix my bathroom that is leaking. the faucet is not well and i tried to fix it myself with no results. I believe it will be an one hour job","status":"Open","mainImage":"http://revib.es.s3.amazonaws.com/test/plumber.jpg","images":["http://revib.es.s3.amazonaws.com/test/plumber.jpg"],"tags":["water"]};
+INSERT into Activity content {"isNew":false,"postDate":1418725300002,"type": "OFFER","title":"Programming courses","description":"I am a seasoned programmer and as a side job I would like to teach others how to program for pleasure,fun or work as freelancers.","status": "Open","mainImage": "http://revib.es.s3.amazonaws.com/test/programming1.jpg","images": ["http://revib.es.s3.amazonaws.com/test/programming1.jpg", "http://revib.es.s3.amazonaws.com/test/programming2.png"],"tags":["HTML5","programming","water"]};
+INSERT into Activity content {"isNew":false,"status":"Open","postDate":1418725300003,"title":"Italian cook","description":"I would like to cook for a family during the weekdays, I can cook Italian but any mediterranean food really. I have been working in a restaurant in the past","type":"OFFER","mainImage":"http://revib.es.s3.amazonaws.com/test/cook1.jpg","images":["http://revib.es.s3.amazonaws.com/test/cook1.jpg","http://revib.es.s3.amazonaws.com/test/cook2.jpg"],"tags":["cooking","pasta"]};
+INSERT into Activity content {"isNew":false,"postDate":1418725300004,"type": "OFFER","title":"Bike decoration","description":"I love bikes! I also love art! I can make your bike look so much better, and maybe fix some problems too.","status": "PENDING","mainImage": "http://revib.es.s3.amazonaws.com/test/bike1.jpg","images": ["http://revib.es.s3.amazonaws.com/test/bike1.jpg", "http://revib.es.s3.amazonaws.com/test/bike2.jpg"],"tags":["fixie","bicycle"]};
+INSERT into Activity content {"isNew":false,"postDate":1418725300005,"type":"REQUEST","title":"Babysitting help","description":"I need someone to babysit my children for the weekend that I am going away. I would like this person to be able to educate them and play scientific games with them.","status":"Open","mainImage":"http://revib.es.s3.amazonaws.com/test/edu1.jpg","images":["http://revib.es.s3.amazonaws.com/test/edu1.jpg","http://revib.es.s3.amazonaws.com/test/edu2.jpg"],"tags":["babysitting","education"]};
+INSERT into Activity content {"isNew":false,"postDate":1418725300006,"type": "REQUEST","title":"Tailoring","description":"I am getting married soon and I need someone to make some changes to a dress I have from my mother. It's only small details it shouldn't take more than 2 hours I guess","status": "Open","mainImage":"http://revib.es.s3.amazonaws.com/test/tailor1.jpg","images": ["http://revib.es.s3.amazonaws.com/test/tailor1.jpg"],"address":"Rhode Islang NW 335,Washington DC,USA","tags":["tailoring","wedding"]};
+
+INSERT into Event content {"date":1418725300001,"status":"Open","lon":1.349897,"lat":30.842111,"address":"rue moufetard 22,Paris,France"};
+INSERT into Event content {"date":1418725300002,"status":"Completed","lon":1.349897,"lat":30.842111,"address":"rue moufetard 22,Paris,France"};
+INSERT into Event content {"status":"Open","lon":1.349897,"lat":30.842111,"date":1418725300003,"address":"Rhode Island NW 335,Washington DC,USA"};
+
+CREATE EDGE EventEdge FROM (SELECT FROM Activity WHERE postDate=1418725300001) TO (SELECT FROM Event WHERE date=1418725300001);
+CREATE EDGE EventEdge FROM (SELECT FROM Activity WHERE postDate=1418725300001) TO (SELECT FROM Event WHERE date=1418725300002);
+CREATE EDGE EventEdge FROM (SELECT FROM Activity WHERE postDate=1418725300002) TO (SELECT FROM Event WHERE date=1418725300003);
+
+CREATE EDGE Friendship FROM (SELECT FROM User WHERE username="testuser1") TO (SELECT FROM User WHERE username="testuser3");
+CREATE EDGE Friendship FROM (SELECT FROM User WHERE username="testuser1") TO (SELECT FROM User WHERE username="testuser4");
+CREATE EDGE Friendship FROM (SELECT FROM User WHERE username="testuser3") TO (SELECT FROM User WHERE username="testuser2");
+
+CREATE EDGE Ownership FROM (SELECT FROM User WHERE username="testuser1") TO (SELECT FROM Activity WHERE postDate=1418725300001);
+CREATE EDGE Ownership FROM (SELECT FROM User WHERE username="testuser1") TO (SELECT FROM Activity WHERE postDate=1418725300002);
+CREATE EDGE Ownership FROM (SELECT FROM User WHERE username="testuser2") TO (SELECT FROM Activity WHERE postDate=1418725300003);
+CREATE EDGE Ownership FROM (SELECT FROM User WHERE username="testuser2") TO (SELECT FROM Activity WHERE postDate=1418725300004);
+CREATE EDGE Ownership FROM (SELECT FROM User WHERE username="testuser3") TO (SELECT FROM Activity WHERE postDate=1418725300005);
+CREATE EDGE Ownership FROM (SELECT FROM User WHERE username="testuser3") TO (SELECT FROM Activity WHERE postDate=1418725300006);
+
+CREATE EDGE Participation FROM (SELECT FROM User WHERE username="testuser2") TO (SELECT FROM Event WHERE date=1418725300001);
+CREATE EDGE Participation FROM (SELECT FROM User WHERE username="testuser3") TO (SELECT FROM Event WHERE date=1418725300001);
+CREATE EDGE Participation FROM (SELECT FROM User WHERE username="testuser1") TO (SELECT FROM Event WHERE date=1418725300001);
+CREATE EDGE Participation FROM (SELECT FROM User WHERE username="testuser1") TO (SELECT FROM Event WHERE date=1418725300002);
+CREATE EDGE Participation FROM (SELECT FROM User WHERE username="testuser3") TO (SELECT FROM Event WHERE date=1418725300002);
+CREATE EDGE Participation FROM (SELECT FROM User WHERE username="testuser1") TO (SELECT FROM Event WHERE date=1418725300003);
+CREATE EDGE Participation FROM (SELECT FROM User WHERE username="testuser3") TO (SELECT FROM Event WHERE date=1418725300003);
+
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300001) TO (SELECT FROM Tag WHERE tagName="water");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300001) TO (SELECT FROM Tag WHERE tagName="waterfour");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300001) TO (SELECT FROM Tag WHERE tagName="leakage");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300002) TO (SELECT FROM Tag WHERE tagName="programming");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300002) TO (SELECT FROM Tag WHERE tagName="education");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300002) TO (SELECT FROM Tag WHERE tagName="HTML5");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300003) TO (SELECT FROM Tag WHERE tagName="pasta");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300003) TO (SELECT FROM Tag WHERE tagName="cooking");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300004) TO (SELECT FROM Tag WHERE tagName="bicycle");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300004) TO (SELECT FROM Tag WHERE tagName="fixie");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300005) TO (SELECT FROM Tag WHERE tagName="babysitting");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300005) TO (SELECT FROM Tag WHERE tagName="education");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300006) TO (SELECT FROM Tag WHERE tagName="tailoring");
+CREATE EDGE TagEdge FROM (SELECT FROM Activity WHERE postDate=1418725300006) TO (SELECT FROM Tag WHERE tagName="wedding");
+
+CREATE EDGE Connection FROM (SELECT FROM Tag WHERE tagName="cooking") TO (SELECT FROM Tag WHERE tagName="pasta");
+CREATE EDGE Connection FROM (SELECT FROM Tag WHERE tagName="programming") TO (SELECT FROM Tag WHERE tagName="HTML5");

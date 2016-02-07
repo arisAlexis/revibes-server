@@ -1,0 +1,14 @@
+DROP class Message UNSAFE;
+CREATE class Message;
+CREATE PROPERTY Message.timestamp LONG;
+CREATE PROPERTY Message.sender STRING;
+CREATE PROPERTY Message.body STRING;
+
+DROP class Chat UNSAFE;
+CREATE class Chat;
+CREATE PROPERTY Chat.last_update LONG;
+CREATE PROPERTY Chat.title STRING;
+CREATE PROPERTY Chat.referenceId STRING;
+CREATE PROPERTY Chat.messages LINKLIST Message;
+CREATE PROPERTY Chat.participants EMBEDDEDLIST STRING;
+CREATE INDEX Chat.participants NOTUNIQUE_HASH_INDEX;

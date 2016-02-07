@@ -1,0 +1,101 @@
+DROP INDEX exchangeKV UNIQUE;
+DROP class User UNSAFE;
+DROP class Activity UNSAFE;
+DROP class Event UNSAFE;
+DROP INDEX Tag.tagName;
+DROP class Tag UNSAFE;
+DROP INDEX Stream.stream_location;
+DROP class Stream UNSAFE;
+DROP class Comment UNSAFE;
+DROP class Ownership UNSAFE;
+DROP class Participation UNSAFE;
+DROP class FriendRequest UNSAFE;
+DROP class EventRequest UNSAFE;
+DROP class Rating UNSAFE;
+DROP class View UNSAFE;
+DROP class EventEdge UNSAFE;
+DROP class Friendship UNSAFE;
+DROP class Connection UNSAFE;
+DROP class StreamEdge UNSAFE;
+DROP class TagEdge UNSAFE;
+DROP class RetweetEdge UNSAFE;
+DROP class CommentEdge UNSAFE;
+DROP class PlusOne UNSAFE;
+
+CREATE INDEX exchangeKV UNIQUE;
+
+CREATE class User extends V;
+CREATE PROPERTY User.email STRING;
+CREATE PROPERTY User.username STRING;
+CREATE PROPERTY User.firstName STRING;
+CREATE PROPERTY User.lastName STRING;
+CREATE PROPERTY User.online BOOLEAN;
+CREATE PROPERTY User.notifications EMBEDDEDLIST;
+CREATE PROPERTY User.devices EMBEDDEDSET;
+CREATE PROPERTY User.lat DOUBLE;
+CREATE PROPERTY User.lon DOUBLE;
+CREATE PROPERTY User.tempLat DOUBLE;
+CREATE PROPERTY User.tempLon DOUBLE;
+CREATE PROPERTY User.vibes INTEGER;
+CREATE PROPERTY User.facebookId String;
+CREATE INDEX User.email UNIQUE_HASH_INDEX;
+CREATE INDEX User.facebookId UNIQUE_HASH_INDEX;
+CREATE INDEX User.user_location ON User(lat,lon) SPATIAL ENGINE LUCENE;
+CREATE INDEX User.temp_location ON User(tempLat,tempLon) SPATIAL ENGINE LUCENE;
+CREATE INDEX User.combined_name ON User(firstName,lastName,email,username) FULLTEXT ENGINE LUCENE;
+
+CREATE class Activity extends V;
+CREATE PROPERTY Activity.tags EMBEDDEDLIST STRING;
+CREATE PROPERTY Activity.title STRING;
+CREATE PROPERTY Activity.description STRING;
+CREATE PROPERTY Activity.category STRING;
+CREATE PROPERTY Activity.language STRING;
+CREATE PROPERTY Activity.fullText STRING
+CREATE PROPERTY Activity.lat DOUBLE;
+CREATE PROPERTY Activity.lon DOUBLE;
+CREATE INDEX Activity.category NOTUNIQUE_HASH_INDEX;
+CREATE INDEX Activity.language NOTUNIQUE_HASH_INDEX;
+CREATE INDEX Activity.fullText FULLTEXT ENGINE LUCENE METADATA {"analyzer":"org.apache.lucene.analysis.en.EnglishAnalyzer"};
+CREATE INDEX Activity.activity_location ON Activity(lat,lon) SPATIAL ENGINE LUCENE;
+
+CREATE class Event extends V;
+CREATE PROPERTY Event.lat DOUBLE;
+CREATE PROPERTY Event.lon DOUBLE;
+CREATE PROPERTY Event.testId INTEGER;
+CREATE INDEX Event.event_location ON Event(lat,lon) SPATIAL ENGINE LUCENE;
+
+CREATE class Tag extends V;
+CREATE PROPERTY Tag.tagName STRING;
+CREATE INDEX Tag.tagName FULLTEXT ENGINE LUCENE;
+
+CREATE class Stream extends V;
+CREATE PROPERTY Stream.timestamp LONG;
+CREATE PROPERTY Stream.lat DOUBLE;
+CREATE PROPERTY Stream.lon DOUBLE;
+CREATE INDEX Stream.stream_location ON Stream(lat,lon) SPATIAL ENGINE LUCENE;
+
+CREATE class Comment extends V;
+CREATE PROPERTY Comment.timestamp LONG;
+
+CREATE class Ownership extends E;
+CREATE class Participation extends E;
+CREATE class FriendRequest extends E;
+CREATE class EventRequest extends E;
+CREATE PROPERTY EventRequest.lat DOUBLE;
+CREATE PROPERTY EventRequest.lon DOUBLE;
+CREATE PROPERTY EventRequest.date LONG;
+CREATE PROPERTY EventRequest.timestamp LONG;
+CREATE class Rating extends E;
+CREATE class View extends E;
+CREATE class EventEdge extends E;
+CREATE class Friendship extends E;
+CREATE class Connection extends E;
+CREATE class StreamEdge extends E;
+CREATE property StreamEdge.timestamp LONG;
+CREATE class TagEdge extends E;
+CREATE class RetweetEdge extends E;
+CREATE property RetweetEdge.timestamp LONG;
+CREATE class CommentEdge extends E;
+CREATE property CommentEdge.timestamp LONG;
+CREATE class PlusOne extends E;
+CREATE property PlusOne.timestamp LONG;

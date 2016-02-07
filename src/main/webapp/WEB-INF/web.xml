@@ -1,0 +1,89 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Exchange Rest Server</display-name>
+    <context-param>
+        <param-name>S3_BUCKET</param-name>
+        <param-value>revib.es</param-value>
+    </context-param>
+    <context-param>
+        <param-name>S3_FOLDER</param-name>
+        <param-value>test</param-value>
+    </context-param>
+    <context-param>
+        <param-name>ORIENT_HTTP_URL</param-name>
+        <param-value>http://localhost:2480</param-value>
+    </context-param>
+    <context-param>
+        <param-name>ORIENT_USER</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>ORIENT_PASSWORD</param-name>
+        <param-value>admin123</param-value>
+    </context-param>
+    <context-param>
+        <param-name>ORIENT_CONFIGURATION</param-name>
+        <param-value>remote:localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TMP_DIR</param-name>
+        <param-value>/tmp/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>AWS_S3_ACCESS</param-name>
+        <param-value></param-value>
+    </context-param>
+    <context-param>
+        <param-name>AWS_S3_SECRET</param-name>
+        <param-value>P</param-value>
+    </context-param>
+    <context-param>
+        <param-name>AWS_SMTP_USER</param-name>
+        <param-value></param-value>
+    </context-param>
+    <context-param>
+        <param-name>AWS_SMTP_PASSWORD</param-name>
+        <param-value></param-value>
+    </context-param>
+    <context-param>
+        <param-name>SERVER_URL</param-name>
+        <param-value>https://localhost:8443/exchange</param-value>
+    </context-param>
+    <context-param>
+        <param-name>SSL_CERT_PATH</param-name>
+        <param-value>/opt/exchange/exchange_cert</param-value>
+    </context-param>
+    <context-param>
+        <param-name>SSL_PASSWORD</param-name>
+        <param-value>petten</param-value>
+    </context-param>
+    <servlet>
+    <servlet-name>rest</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+        <param-name>javax.ws.rs.Application</param-name>
+        <param-value>es.revib.server.rest.jersey.MyApplication</param-value>
+    </init-param>
+    </servlet>
+    <listener>
+        <listener-class>
+            es.revib.server.rest.servlet.InitialListener
+        </listener-class>
+    </listener>
+<servlet-mapping>
+        <servlet-name>rest</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Exchange Rest Server</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+</web-app>
