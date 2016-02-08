@@ -18,7 +18,7 @@ In the spirit of [couchsurfing](http://www.couchsurfing.com) and [timebanks](htt
 * Geolocation for streams in your neighbourhood
 * Streams from friends, geolocation or topics/tags you subscribe
 
-Please read more about how it works and technical information at  the detailed [wiki](https://github.com/arisAlexis/revibes-server/wiki/) section.
+**Please read more about how it works and technical information at  the detailed [WIKI](https://github.com/arisAlexis/revibes-server/wiki/) section**
 
 # Questions
 
