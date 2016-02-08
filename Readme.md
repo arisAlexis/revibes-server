@@ -20,7 +20,7 @@ In the spirit of [couchsurfing](http://www.couchsurfing.com) and [timebanks](htt
 * Geolocation for streams in your neighbourhood
 * Streams from friends, geolocation or topics/tags you subscribe
 
-Please read more about how it works and technical information at  the wiki section.
+Please read more about how it works and technical information at  the detailed [wiki](https://github.com/arisAlexis/revibes-server/wiki/) section.
 
 # Questions
 
@@ -74,7 +74,7 @@ The main technologies being used are:
 * Hibernate (validator only)
 * Apache Tika
 
-Read more at the wiki.
+Read more at the [wiki](https://github.com/arisAlexis/revibes-server/wiki/).
 
 # Quick Instructions
 
