@@ -3,12 +3,10 @@
 **Revibes** is a social network with a purpose.
 
 Users can be part of an altruistic community in which people help each other. This game awards you with 1 *good vibe* for every person that you help somehow with the actual outcome not being important.
-Meeting your peers, your neighbors and asking them for help or helping them out makes human bonding easier and fills you with good vibes that you can show off!
 
-The most important feature and the gist of all the network is to ask for help to your friends and their circle,neighbours and people that are close
-It is much easier to get help from someone that is connected to you in some way than just randomly.
-
-People that help get good vibes from you.
+Meeting your peers, your neighbors and asking them for help or helping them out makes human bonding easier and fills you with good vibes that you can show off!  
+The most important feature and the gist of all the network is to ask for help to your friends and their circle,neighbours and people that are close.  
+It is much easier to get help from someone that is connected to you in some way.
 
 In the spirit of [couchsurfing](http://www.couchsurfing.com) and [timebanks](https://en.wikipedia.org/wiki/Time-based_currency).
 
@@ -28,7 +26,7 @@ Please read more about how it works and technical information at  the detailed [
 
 This project started with a goal of forming a local startup in Amsterdam. That did not happen with the most obvious
 reason of having no monetization plan and we concluded it would serve better as an open platform and involve other people.
-This project can be continued of used as a base for ideas and code.
+This project can be continued or used as a base for ideas and code.
 
 **How can I help?**
 
